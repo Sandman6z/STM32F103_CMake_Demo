@@ -56,13 +56,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-// 在while(1)循环前启动定时器
-HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
-HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
-HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
 /* USER CODE END 0 */
 
 /**
@@ -97,15 +91,13 @@ int main(void)
   MX_DMA_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
+// 在while(1)循环前启动定时器
 HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,500);
-#define NUM 1
-uint32_t send_Buf[NUM] = {0};
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
-for (int i = 0; i < NUM; i++)
-{
- 	send_Buf[i] = 20 * (i + 1);
-}
+HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -115,11 +107,7 @@ for (int i = 0; i < NUM; i++)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
-  HAL_Delay(5);
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
-  HAL_Delay(350);
-	//  HAL_TIM_PWM_Start_DMA(&htim1, TIM_CHANNEL_1,(uint32_t*)send_Buf,NUM);
+
   }
   /* USER CODE END 3 */
 }
