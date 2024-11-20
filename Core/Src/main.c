@@ -56,10 +56,13 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-// void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
-// {
-// 	HAL_TIM_PWM_Stop_DMA(&htim1, TIM_CHANNEL_1);
-// }
+// 在while(1)循环前启动定时器
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+
+HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
 /* USER CODE END 0 */
 
 /**
